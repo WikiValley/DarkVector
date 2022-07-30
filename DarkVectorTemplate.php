@@ -41,7 +41,7 @@ class DarkVectorTemplate extends BaseTemplate {
 			$user = $this->getSkin()->getUser();
 			$relevantTitle = $this->getSkin()->getRelevantTitle();
 			$isWatched = false;
-			if ( method_exists( $user, 'isWatched' ) ) {
+			if ( method_exists( $user, 'isWatched' ) && !( class_exists( 'MediaWiki\MediaWikiServices' ) && method_exists( 'MediaWiki\MediaWikiServices', 'getWatchlistManager' ) ) ) {
 				$isWatched = $user->isWatched( $relevantTitle );
 			} else {
 				$instance = MediaWiki\MediaWikiServices::getInstance();
